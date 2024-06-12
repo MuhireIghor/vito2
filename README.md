@@ -20,7 +20,7 @@ This application detects and recognizes customers' faces, ensuring that the face
 
 1. **Clone the Repository**
     ```bash
-    git clone https://github.com/your-repository/face-sign-recognition.git
+    git clone https://github.com/MuhireIghor/vito2.git
     cd face-sign-recognition
     ```
 
@@ -72,7 +72,7 @@ face-sign-recognition/
 │   ├── haarcascade_frontalface_default.xml
 │
 ├── customer_faces_data.db
-├── keras_Model.h5
+├── keras_model.h5
 ├── labels.txt
 ├── face_sign_recognition.py
 └── README.md

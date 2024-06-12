@@ -1,3 +1,4 @@
+
 import cv2
 import sqlite3
 import numpy as np
@@ -84,7 +85,7 @@ while True:
                     if recognition_count[customer_uid] >= REQUIRED_RECOGNITION_COUNT:
                         face_recognized = True
                         current_customer_uid = customer_uid
-                        print(f"Face recognized: {customer_name}")
+                        print(f"Face recognized: {customer_name} (UID: {customer_uid})")
                         break
 
             # Create rectangle around the face
@@ -119,10 +120,13 @@ while True:
             try:
                 conn = sqlite3.connect('customer_faces_data.db')
                 c = conn.cursor()
-                print(current_customer_uid,"current one")
+                print(f"Updating database for UID: {current_customer_uid}")
                 c.execute("UPDATE customers SET confirm = 1 WHERE customer_uid = ?", (current_customer_uid,))
                 conn.commit()
-                print(f"{customer_name} confirmed")
+                if c.rowcount == 0:
+                    print(f"No rows updated for UID: {current_customer_uid}")
+                else:
+                    print(f"Database updated for UID: {current_customer_uid}")
             except sqlite3.Error as e:
                 print("SQLite error:", e)
             finally:
